@@ -35,25 +35,25 @@ const LaunchRequestHandler = {
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak('Welcome to Decision Tree. I will recommend the best job for you. Do you want to start your career or be a couch potato?')
-      .reprompt('Do you want a career or to be a couch potato?')
+      .speak('Welcome to Tasty Craft Beer Advisor. I will recommend the most suitable Hungarian craftbeer for you. What kind of beer do you like?')
+      .reprompt('What do you prefer color wise? Pale? Dark? Does it matter?')
       .getResponse();
   },
 };
 
-const CouchPotatoIntent = {
-  canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
+// const BeerMeIntent = {
+//   canHandle(handlerInput) {
+//     const request = handlerInput.requestEnvelope.request;
 
-    return request.type === 'IntentRequest' 
-      && request.intent.name === 'CouchPotatoIntent';
-  },
-  handle(handlerInput) {
-    return handlerInput.responseBuilder
-      .speak('You don\'t want to start your career? Have fun wasting away on the couch.')
-      .getResponse();
-  },
-};
+//     return request.type === 'IntentRequest'
+//       && request.intent.name === 'BeerMeIntent';
+//   },
+//   handle(handlerInput) {
+//     return handlerInput.responseBuilder
+//       .speak('You don\'t want to taste your first beer? In that case good buy and enjoy your healthy life.')
+//       .getResponse();
+//   },
+// };
 
 const InProgressRecommendationIntent = {
   canHandle(handlerInput) {
@@ -70,8 +70,8 @@ const InProgressRecommendationIntent = {
     for (const slotName of Object.keys(handlerInput.requestEnvelope.request.intent.slots)) {
       const currentSlot = currentIntent.slots[slotName];
       if (currentSlot.confirmationStatus !== 'CONFIRMED'
-                && currentSlot.resolutions
-                && currentSlot.resolutions.resolutionsPerAuthority[0]) {
+        && currentSlot.resolutions
+        && currentSlot.resolutions.resolutionsPerAuthority[0]) {
         if (currentSlot.resolutions.resolutionsPerAuthority[0].status.code === 'ER_SUCCESS_MATCH') {
           if (currentSlot.resolutions.resolutionsPerAuthority[0].values.length > 1) {
             prompt = 'Which would you like';
@@ -123,15 +123,15 @@ const CompletedRecommendationIntent = {
 
     const slotValues = getSlotValues(filledSlots);
 
-    const key = `${slotValues.salaryImportance.resolved}-${slotValues.personality.resolved}-${slotValues.bloodTolerance.resolved}-${slotValues.preferredSpecies.resolved}`;
-    const occupation = options[slotsToOptionsMap[key]];
+    const key = `${slotValues.colorImportance.resolved}-${slotValues.bitterness.resolved}-${slotValues.glutenTolerance.resolved}-${slotValues.preferredTypes.resolved}`;
+    const recommendedbeer = options[slotsToOptionsMap[key]];
 
-    const speechOutput = `So you want to be ${slotValues.salaryImportance.resolved
-    }. You are an ${slotValues.personality.resolved
-    }, you like ${slotValues.preferredSpecies.resolved
-    }  and you ${slotValues.bloodTolerance.resolved === 'high' ? 'can' : "can't"
-    } tolerate blood ` +
-            `. You should consider being a ${occupation.name}`;
+    const speechOutput = `So you want to have ${slotValues.colorImportance.resolved
+      } kind. You prefer  ${slotValues.bitterness.resolved
+      }, you like ${slotValues.preferredTypes.resolved
+      }  and you are ${slotValues.glutenTolerance.resolved === 'sensitive' ? 'yes' : "no"
+      } tolerate blood ` +
+      `. You should try a  ${recommendedbeer.name}`;
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -143,7 +143,7 @@ const HelpHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
 
-    return request.type === 'IntentRequest' 
+    return request.type === 'IntentRequest'
       && request.intent.name === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
@@ -200,10 +200,10 @@ const ErrorHandler = {
 const skillBuilder = Alexa.SkillBuilders.custom();
 
 const requiredSlots = [
-  'preferredSpecies',
-  'bloodTolerance',
-  'personality',
-  'salaryImportance',
+  'preferredTypes',
+  'glutenTolerance',
+  'bitterness',
+  'colorImportance',
 ];
 
 const slotsToOptionsMap = {
@@ -304,12 +304,12 @@ function getSlotValues(filledSlots) {
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    CouchPotatoIntent,
+    // BeerMeIntent,
     InProgressRecommendationIntent,
     CompletedRecommendationIntent,
     HelpHandler,
     ExitHandler,
-    SessionEndedRequestHandler,    
+    SessionEndedRequestHandler,
   )
   .addErrorHandlers(ErrorHandler)
   .lambda();

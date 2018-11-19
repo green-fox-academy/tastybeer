@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "decision tree",
+      "invocationName": "tasty craftbeer",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -16,45 +16,38 @@
           "samples": []
         },
         {
-          "name": "CouchPotatoIntent",
-          "samples": [
-            "couch potato",
-            "lazy"
-          ]
-        },
-        {
           "name": "RecommendationIntent",
           "slots": [
             {
-              "name": "salaryImportance",
-              "type": "salaryImportanceType",
+              "name": "colorImportance",
+              "type": "colorImportanceType",
               "samples": [
-                "{I_Want} to be {salaryImportance}",
-                "{salaryImportance}"
+                "{I_Like} the {colorImportance}",
+                "{colorImportance}"
               ]
             },
             {
-              "name": "personality",
-              "type": "personalityType",
+              "name": "bitterness",
+              "type": "bitternessType",
               "samples": [
-                "{I_Am} {article} {personality}",
-                "{personality}"
+                "{I_Am} {article} {bitterness}",
+                "{bitterness}"
               ]
             },
             {
-              "name": "preferredSpecies",
-              "type": "preferredSpeciesType",
+              "name": "glutenTolerance",
+              "type": "glutenToleranceType",
               "samples": [
-                "{I_Like} {preferredSpecies}",
-                "{preferredSpecies}"
+                "{I_Am} {glutenTolerance}",
+                "{glutenTolerance}"
               ]
             },
             {
-              "name": "bloodTolerance",
-              "type": "bloodToleranceType",
+              "name": "preferredTypes",
+              "type": "preferredTypesType",
               "samples": [
-                "I would {bloodTolerance}",
-                "{bloodTolerance}"
+                "{I_Like} {preferredTypes}",
+                "{preferredTypes}"
               ]
             },
             {
@@ -75,13 +68,13 @@
             }
           ],
           "samples": [
-            "recommend a job",
-            "{I_Like} {preferredSpecies}",
-            "{I_Like} {bloodTolerance}",
-            "{I_Am} {article} {personality}",
-            "{I_Want} to be {salaryImportance}",
-            "to recommend a job",
-            "start my career"
+            "recommend a beer",
+            "{I_Like} {preferredTypes}",
+            "{I_Like} {bitterness}",
+            "{I_Am} {glutenTolerance}",
+            "{I_Want} {colorImportance} beer",
+            "to recommend a beer",
+            "start tasting"
           ]
         }
       ],
@@ -107,31 +100,28 @@
           "values": [
             {
               "name": {
-                "value": "low",
+                "value": "sensitive",
                 "synonyms": [
-                  "yuck",
-                  "no way",
-                  "gross",
-                  "I can't stand it",
-                  "can't stand it",
-                  "throw up when I see it",
-                  "scream"
+                  "I have gluten intolerance",
+                  "Gluten sensitive",
+                  "No gluten",
+                  "I can't stand gluten"
                 ]
               }
             },
             {
               "name": {
-                "value": "high",
+                "value": "no",
                 "synonyms": [
-                  "I like blood",
+                  "I like gluten",
                   "doesn't bother me",
-                  "blood is natural",
-                  "shrug"
+                  "gluten is natural",
+                  "go"
                 ]
               }
             }
           ],
-          "name": "bloodToleranceType"
+          "name": "glutenToleranceType"
         },
         {
           "values": [
@@ -178,54 +168,49 @@
           "values": [
             {
               "name": {
-                "value": "extrovert",
+                "value": "sweat",
                 "synonyms": [
-                  "social butterfly",
-                  "love to party"
+                  "no bitter",
+                  "high malt sweetness",
+                  "radler"
                 ]
               }
             },
             {
               "name": {
-                "value": "introvert",
+                "value": "bitter",
                 "synonyms": [
-                  "to be alone",
-                  "misunderstood"
+                  "agressive bitterness",
+                  "harsh",
+                  "bitter"
                 ]
               }
             }
           ],
-          "name": "personalityType"
+          "name": "bitternessType"
         },
         {
           "values": [
             {
               "name": {
-                "value": "animals",
+                "value": "pils",
                 "synonyms": [
-                  "dogs",
-                  "cats",
-                  "birds",
-                  "turtles",
-                  "puppies",
-                  "kittens",
-                  "elephants"
+                  "pils",
+                  "pilsen"
                 ]
               }
             },
             {
               "name": {
-                "value": "people",
+                "value": "ipa",
                 "synonyms": [
-                  "men",
-                  "women",
-                  "kids",
-                  "humans"
+                  "indian pale ale",
+                  "ipa"
                 ]
               }
             }
           ],
-          "name": "preferredSpeciesType"
+          "name": "preferredTypesType"
         },
         {
           "values": [
@@ -233,39 +218,40 @@
               "name": {
                 "value": "unimportant",
                 "synonyms": [
-                  "money is evil",
-                  "money is not important",
+                  "not important",
+                  "color is not important",
                   "not a sell out",
                   "nope",
-                  "don't care about money"
+                  "don't care about color"
                 ]
               }
             },
             {
               "name": {
-                "value": "somewhat",
+                "value": "pale",
                 "synonyms": [
-                  "just enough",
-                  "somewhat important",
-                  "not top priority",
-                  "support my family"
+                  "light",
+                  "pale",
+                  "support pale",
+                  "yellow",
+                  "light brown"
                 ]
               }
             },
             {
               "name": {
-                "value": "very",
+                "value": "dark",
                 "synonyms": [
-                  "high salary",
-                  "filthy rich",
-                  "billionaire",
-                  "important",
-                  "nothing more important"
+                  "guinness",
+                  "dark as night",
+                  "dark",
+                  "brown",
+                  "black"
                 ]
               }
             }
           ],
-          "name": "salaryImportanceType"
+          "name": "colorImportanceType"
         }
       ]
     },
@@ -276,39 +262,39 @@
           "confirmationRequired": false,
           "slots": [
             {
-              "name": "salaryImportance",
-              "type": "salaryImportanceType",
+              "name": "colorImportance",
+              "type": "colorImportanceType",
               "elicitationRequired": true,
               "confirmationRequired": false,
               "prompts": {
-                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-salaryImportance"
+                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-colorImportance"
               }
             },
             {
-              "name": "personality",
-              "type": "personalityType",
+              "name": "bitterness",
+              "type": "bitternessType",
               "elicitationRequired": true,
               "confirmationRequired": false,
               "prompts": {
-                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-personality"
+                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-bitterness"
               }
             },
             {
-              "name": "preferredSpecies",
-              "type": "preferredSpeciesType",
+              "name": "preferredTypes",
+              "type": "preferredTypesType",
               "elicitationRequired": true,
               "confirmationRequired": false,
               "prompts": {
-                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-preferredSpecies"
+                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-preferredTypes"
               }
             },
             {
-              "name": "bloodTolerance",
-              "type": "bloodToleranceType",
+              "name": "glutenTolerance",
+              "type": "glutenToleranceType",
               "elicitationRequired": true,
               "confirmationRequired": false,
               "prompts": {
-                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-bloodTolerance"
+                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-glutenTolerance"
               }
             },
             {
@@ -341,38 +327,38 @@
     },
     "prompts": [
       {
-        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-salaryImportance",
+        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-colorImportance",
         "variations": [
           {
             "type": "PlainText",
-            "value": "Which phrase best describes your thoughts about money, there's nothing more important, not top priority, or I don't care about money."
+            "value": "What is your preference about the color of your beer: pale, dark or does not matter."
           }
         ]
       },
       {
-        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-personality",
+        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-bitterness",
         "variations": [
           {
             "type": "PlainText",
-            "value": "Would you say that you are an introvert or an extrovert?"
+            "value": "What about bitterness? Do you like it?"
           }
         ]
       },
       {
-        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-preferredSpecies",
+        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-preferredTypes",
         "variations": [
           {
             "type": "PlainText",
-            "value": "Between animals and people which do you prefer?"
+            "value": "Between types which do you prefer? Ale? Pils?"
           }
         ]
       },
       {
-        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-bloodTolerance",
+        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-glutenTolerance",
         "variations": [
           {
             "type": "PlainText",
-            "value": "If you saw blood would you scream or shrug?"
+            "value": "Are you gluten intolerant?"
           }
         ]
       }
